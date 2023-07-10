@@ -5,6 +5,12 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
+type RouteType = {
+	href: string;
+	label: string;
+	active: boolean;
+};
+
 export function MainNav({
 	className,
 	...props
@@ -12,7 +18,12 @@ export function MainNav({
 	const pathname = usePathname();
 	const params = useParams();
 
-	const routes = [
+	const routes: RouteType[] = [
+		{
+			href: `/${params.storeId}`,
+			label: "Overview",
+			active: pathname === `/${params.storeId}`,
+		},
 		{
 			href: `/${params.storeId}/settings`,
 			label: "Settings",
