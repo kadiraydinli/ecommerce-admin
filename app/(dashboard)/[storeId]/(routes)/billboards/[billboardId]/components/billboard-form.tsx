@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import * as z from "zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Trash } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { Billboard } from "@prisma/client";
-import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
@@ -42,7 +41,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 }) => {
 	const params = useParams();
 	const router = useRouter();
-	const origin = useOrigin();
 
 	const [open, setOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
